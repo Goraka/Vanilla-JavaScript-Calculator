@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="calculator" class="calc">
+
+        <div class="div-input-container">
+            <input type="text" id="calc_x" readonly disabled>
+            <input type="text" id="calc_val">
+        </div>
+
+        <div id="calc-btn-container">
+            <div class="calc-row" id="calc_row_0">
+                <button class="calc-button" id="calc_button_perc" value="PERC" data-op="%">%</button>
+                <button class="calc-button" id="calc_button_ce" value="CE">CE</button>
+                <button class="calc-button" id="calc_button_c" value="C">C</button>
+                <button class="calc-button" id="calc_button_back" value="DEL">back</button>
+            </div>
+
+            <div class="calc-row" id="calc_row_0">
+                <button class="calc-button" id="calc_button_"></button>
+                <button class="calc-button" id="calc_button_"></button>
+                <button class="calc-button" id="calc_button_"></button>
+                <button class="calc-button" id="calc_button_divide" value="DIVIDE" data-op="/">/</button>
+            </div>
+            
+            <div class="calc-row" id="calc_row_1">
+                <button class="calc-button" id="calc_button_7" value="7">7</button>
+                <button class="calc-button" id="calc_button_8" value="8">8</button>
+                <button class="calc-button" id="calc_button_9" value="9">9</button>
+                <button class="calc-button" id="calc_button_multiply" value="MULTIPLY" data-op="*">*</button>
+            </div>
+
+            <div class="calc-row" id="calc_row_2">
+                <button class="calc-button" id="calc_button_4" value="4">4</button>
+                <button class="calc-button" id="calc_button_5" value="5">5</button>
+                <button class="calc-button" id="calc_button_6" value="6">6</button>
+                <button class="calc-button" id="calc_button_subtract" value="SUBTRACT" data-op="-">-</button>
+            </div>
+
+            <div class="calc-row" id="calc_row_3">
+                <button class="calc-button" id="calc_button_1" value="1">1</button>
+                <button class="calc-button" id="calc_button_2" value="2">2</button>
+                <button class="calc-button" id="calc_button_3" value="3">3</button>
+                <button class="calc-button" id="calc_button_add" value="ADD" data-op="+">+</button>
+            </div>
+
+            <div class="calc-row" id="calc_row_4">
+                <button class="calc-button" id="calc_button_">C</button>
+                <button class="calc-button" id="calc_button_0" value="0">0</button>
+                <button class="calc-button" id="calc_button_dec" value="DECIMAL" data-op=".">.</button>
+                <button class="calc-button" id="calc_button_equal" value="EQUAL">=</button>
+            </div>
+
+            <!-- <div class="calc-row" id="calc_row_5">
+            </div> -->
+            
+        </div>
+    </div>
+
+    <script src="index.js" defer></script>
+</body>
+</html>
