@@ -28,9 +28,23 @@ document.addEventListener('DOMContentLoaded', ()=>{
         }
     };
 
-    calcInput.addEventListener('input', ()=>{
+    calcInput.addEventListener('keydown', (event) => {
+        
+        const key = event.key;
+        
+        if(key === 'Enter'){
+            equalOperation();
+            return;
+        }
+
+        if(key === '+' || key === '-' || key === '*' || key === '/') {
+            operations(key);
+            event.preventDefault();
+            return;
+        }
+
         manageInputSize();
-    });
+    })
 
     for(let ctrl=0; ctrl<calcbtnInput.length; ctrl++){
         calcbtnInput[ctrl].addEventListener('click', (event) => {
@@ -53,21 +67,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             }
 
             if(ctrls === 'EQUAL'){
-                try {
-                    let expression = 0;
-
-                    if(calcDisplay.value === ''){
-                        calcDisplay.value = 0;
-                    }
-
-                    expression = calcDisplay.value + calcInput.value;
-
-                    calcInput.value = eval(expression);
-                    calcDisplay.value = '';
-
-                } catch (error) {
-                    calcDisplay.value = 'Error';
-                }
+                equalOperation()
                 return;
             }
 
@@ -75,18 +75,49 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 calcInput.value += ctrls;
             }
             else{
-                if(calcInput.value === ''){
-                    calcInput.value = '0';
-                }
+                operations(event.target.dataset.op);
+                // if(calcInput.value === ''){
+                //     calcInput.value = '0';
+                // }
 
-
-                calcInput.value += event.target.dataset.op;
-                calcDisplay.value = calcInput.value;
-                calcInput.value = '';
+                // calcInput.value += event.target.dataset.op;
+                // calcDisplay.value = calcInput.value;
+                // calcInput.value = '';
             }
 
             manageInputSize();
         });
     };
+
+    function equalOperation(){
+        try {
+            let expression = 0;
+
+            if(calcDisplay.value === ''){
+                calcDisplay.value = 0;
+            }
+
+            expression = calcDisplay.value + calcInput.value;
+            console.log(expression);
+
+            calcInput.value = eval(expression);
+            calcDisplay.value = '';
+
+        } catch (error) {
+            calcDisplay.value = 'Error';
+        }
+        return;
+    };
+
+    function operations(operator){
+        if(calcInput.value === ''){
+            calcInput.value = '0';
+        }
+
+        let expression = calcInput.value + operator;
+        calcDisplay.value = expression;
+        calcInput.value = '';
+        return;
+    }
 
 });
