@@ -53,16 +53,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if(ctrls === 'C'){
                 calcInput.value = '';
                 calcDisplay.value = '';
+                calcInput.focus();
                 return;
             }
             
             if(ctrls === 'CE'){
                 calcInput.value = '';
+                calcInput.focus();
                 return;
             }
             
             if(ctrls === 'DEL'){
                 calcInput.value = calcInput.value.slice(0, -1);
+                calcInput.focus();
                 return;
             }
 
@@ -76,16 +79,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
             }
             else{
                 operations(event.target.dataset.op);
-                // if(calcInput.value === ''){
-                //     calcInput.value = '0';
-                // }
-
-                // calcInput.value += event.target.dataset.op;
-                // calcDisplay.value = calcInput.value;
-                // calcInput.value = '';
             }
 
             manageInputSize();
+            calcInput.focus();
         });
     };
 
@@ -98,10 +95,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
             }
 
             expression = calcDisplay.value + calcInput.value;
-            console.log(expression);
 
             calcInput.value = eval(expression);
             calcDisplay.value = '';
+            calcInput.focus();
 
         } catch (error) {
             calcDisplay.value = 'Error';
@@ -110,13 +107,23 @@ document.addEventListener('DOMContentLoaded', ()=>{
     };
 
     function operations(operator){
+        let expression = 0;
+
         if(calcInput.value === ''){
             calcInput.value = '0';
         }
 
-        let expression = calcInput.value + operator;
+        if(calcDisplay.value !== '' && !calcDisplay.value.includes(operator)){
+            calcDisplay.value = calcDisplay.value.slice(0, -1);
+            calcDisplay.value += operator;
+            calcInput.value = '';
+            return;
+        }
+
+        expression = calcInput.value + operator;
         calcDisplay.value = expression;
         calcInput.value = '';
+        calcInput.focus();
         return;
     }
 
