@@ -12,6 +12,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
         PERC: 'PERC'
     };
 
+    const OP_symbols = {
+        MULTIPLY: '*',
+        DIVIDE: '/',
+        SUBTRACT: '-',
+        ADD: '+',
+        PERC: '%'
+    }
+
     function manageInputSize(){
         const maxSize = '3em';
         const minSize = '1em';
@@ -113,10 +121,21 @@ document.addEventListener('DOMContentLoaded', ()=>{
             calcInput.value = '0';
         }
 
-        if(calcDisplay.value !== '' && !calcDisplay.value.includes(operator)){
-            calcDisplay.value = calcDisplay.value.slice(0, -1);
-            calcDisplay.value += operator;
+        if(calcDisplay.value !== '' 
+            && Object.values(OP_symbols).includes(calcDisplay.value[calcDisplay.value.length - 1])){
+
+            if(calcInput.value === '' && !calcDisplay.value.includes(operator)){
+                calcDisplay.value = calcDisplay.value.slice(0, -1);
+                calcDisplay.value += operator;
+                calcInput.value = '';
+                return;
+            }
+
+            expression = calcDisplay.value + calcInput.value;
+
+            calcDisplay.value = eval(expression) + operator;
             calcInput.value = '';
+            calcInput.focus();
             return;
         }
 

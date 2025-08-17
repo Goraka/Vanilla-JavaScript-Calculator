@@ -26,13 +26,14 @@ div.div-input-container {
     flex-direction: column;
     flex-grow: 1;
     justify-content: center;
-    height: 20%;
+    height: 40%;
 }
 
 input[type="text"] {
     box-sizing: border-box;
     width: inherit;
     border: none;
+    flex-grow: 1;
 }
 
 input[type="text"]:focus{
@@ -42,6 +43,12 @@ input[type="text"]:focus{
 #calc_val {
     font-size: 3em;
     text-align: right;
+    flex-grow: 1;
+    height: 50%;
+}
+
+#calc_x{
+    font-size: 1.5em;
 }
 
 #calc-btn-container{
@@ -58,11 +65,32 @@ input[type="text"]:focus{
     flex-grow: 1;
     width: 100%;
     /* height: 10%; */
+    background-color: #333a33;
 }
 
 .calc-row button{
     flex-grow: 1;
     width: inherit;
     cursor: pointer;
-    /* border: none; */
+    border: none;
+    background-color: #333a33;
+    color: white;
+    border-radius: 5px;
+    font-size: 22px;
+}
+
+.calc-row button:hover{
+    background-color: #494d49;
+}
+
+.calc-row > .grey-option {
+    background-color: #ccc; 
+    color: #666;
+    cursor: not-allowed;
+    border-radius: 0;
+    background-color: #333a33;
+}
+
+.calc-row > .grey-option:hover{
+    background-color: #333a33;;
 }
